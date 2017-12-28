@@ -1,8 +1,21 @@
+// React
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const App = () => (
-  <h1>My App!</h1>
+// Redux
+import { Provider } from 'react-redux'
+import store from './store/store'
+
+//Styles
+import 'normalize.css/normalize.css'
+
+// Components
+import App from './components/App'
+
+const JSX = (
+  <Provider store={store}>
+    <App />
+  </Provider>
 )
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(JSX, document.getElementById('app'))
