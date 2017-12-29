@@ -47,7 +47,8 @@ class Form extends Component {
         interestRateError: '',
         loanLengthError: ''
       }))
-      console.log('submit values!')
+
+      this.props.calcAmortizationSchedule(loanAmount, loanLength, interestRate)
     }
   }
 
