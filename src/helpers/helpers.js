@@ -67,7 +67,7 @@ export function calcPaid(amortizationSchedule, key) {
             .map((obj) => Number(obj[key]))
             .reduce((accumulator, element) => (
               Math.round((accumulator + element) * 100) / 100 // round to 2 decimal places
-            ))
+            ), 0)
          )
 }
 
