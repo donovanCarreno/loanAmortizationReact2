@@ -21,7 +21,7 @@ class Form extends Component {
     e.preventDefault()
 
     const loanAmount = Number(this.props.loanAmount)
-    const loanLength = Number(this.props.loanLength)
+    let loanLength = Number(this.props.loanLength)
     const interestRate = Number(this.props.interestRate)
     let valid = true
 
@@ -52,6 +52,8 @@ class Form extends Component {
         interestRateError: '',
         loanLengthError: ''
       }))
+
+      loanLength = this.props.term === 'years' ? loanLength * 12 : loanLength
 
       this.props.calcAmortizationSchedule(loanAmount, loanLength, interestRate)
     }
@@ -131,10 +133,11 @@ class Form extends Component {
   }
 }
 
-const mapStateToProps = ({ loanAmount, loanLength, interestRate, sampleLoanAmount, sampleLoanLength, sampleInterestRate }) => ({
+const mapStateToProps = ({ loanAmount, loanLength, interestRate, term, sampleLoanAmount, sampleLoanLength, sampleInterestRate }) => ({
   loanAmount,
   loanLength,
   interestRate,
+  term,
   sampleLoanAmount,
   sampleLoanLength,
   sampleInterestRate
