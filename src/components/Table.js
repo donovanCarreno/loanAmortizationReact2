@@ -9,45 +9,41 @@ import TableRow from './TableRow'
 import { calcPaid, commaSeparatedString } from '../helpers/helpers'
 
 const Table = ({ amortizationSchedule, totalPaid, totalInterestPaid }) => {
-  let footer = null
-
   if (amortizationSchedule.length > 0) {
-    footer = (
-      <tr>
-        <td></td>
-        <td>{ commaSeparatedString(totalPaid.toString()) }</td>
-        <td>{ commaSeparatedString(totalInterestPaid.toString()) }</td>
-        <td></td>
-        <td></td>
-      </tr>
+    return (
+      <div className="table-container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Payment</th>
+              <th>Amount</th>
+              <th>Interest</th>
+              <th>Principal</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              amortizationSchedule.map(details => (
+                <TableRow key={details.paymentNumber} details={details} />
+              ))
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td>{ commaSeparatedString(totalPaid.toString()) }</td>
+              <td>{ commaSeparatedString(totalInterestPaid.toString()) }</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     )
   }
 
-  return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Payment</th>
-            <th>Amount</th>
-            <th>Interest</th>
-            <th>Principal</th>
-            <th>Balance</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            amortizationSchedule.map(details => (
-              <TableRow key={details.paymentNumber} details={details} />
-            ))
-          }
-        </tbody>
-        <tfoot>
-          { footer }
-        </tfoot>
-      </table>
-    </div>
-  )
+  return null
 }
 
 const mapStateToProps = ({ amortizationSchedule }) => ({

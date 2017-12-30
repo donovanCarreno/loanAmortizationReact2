@@ -1,0 +1,38 @@
+.table-container {
+  display: inline-block;
+  margin-left: 17%;
+  padding: 0 2rem;
+  width: 80%;
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 10rem auto;
+  table-layout: fixed;
+  width: 100%;
+}
+
+th {
+  font-weight: 300;
+  letter-spacing: 1.5px;
+}
+
+th, tfoot td {
+  background-color: #10253A;
+  color: white;
+  border: 1px solid black;
+}
+
+td {
+  border: 1px solid black;
+  padding: 4px;
+  text-align: right;
+}
+
+tr:nth-child(even) {
+  background: #6C7E8F;
+}
+
+tr:nth-child(odd) {
+  background: #4A6075;
+}

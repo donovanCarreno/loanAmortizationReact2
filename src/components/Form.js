@@ -12,6 +12,11 @@ class Form extends Component {
     loanLengthError: ''
   }
 
+  componentDidMount() {
+    const { sampleLoanAmount, sampleLoanLength, sampleInterestRate } = this.props
+    this.props.calcAmortizationSchedule(sampleLoanAmount, sampleLoanLength, sampleInterestRate)
+  }
+
   onSubmit = (e) => {
     e.preventDefault()
 
@@ -56,60 +61,83 @@ class Form extends Component {
     const { loanAmount, interestRate, loanLength, inputChange } = this.props
 
     return (
-      <div>
+      <div className="form-container">
+        <span>Loan Details</span>
         <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            name="loanAmount"
-            placeholder="amount (e.g. 20000)"
-            value={loanAmount}
-            onChange={inputChange}
-          />
-          {this.state.loanAmountError && <p>{this.state.loanAmountError}</p>}
-          <input
-            type="text"
-            name="interestRate"
-            placeholder="interest rate (e.g. 7.5)"
-            value={interestRate}
-            onChange={inputChange}
-          />
-          {this.state.interestRateError && <p>{this.state.interestRateError}</p>}
-          <input
-            type="number"
-            name="loanLength"
-            placeholder="length (e.g. 60)"
-            value={loanLength}
-            onChange={inputChange}
-          />
-          {this.state.loanLengthError && <p>{this.state.loanLengthError}</p>}
-          <input
-            id='months'
-            type='radio'
-            name='term'
-            value='months'
-            onClick={inputChange}
-            defaultChecked
-          />
-          <label htmlFor='months'>Months</label>
-          <input
-            id='years'
-            type='radio'
-            name='term'
-            value='years'
-            onClick={inputChange}
-          />
-          <label htmlFor='years'>Years</label>
-          <button>Submit</button>
+          <div className="form-group">
+            <input
+              type="text"
+              name="loanAmount"
+              placeholder="amount (e.g. 20000)"
+              value={loanAmount}
+              onChange={inputChange}
+            />
+            {this.state.loanAmountError && <p>{this.state.loanAmountError}</p>}
+          </div>
+
+          <div className="form-group">
+            <input
+              type="text"
+              name="interestRate"
+              placeholder="interest rate (e.g. 7.5)"
+              value={interestRate}
+              onChange={inputChange}
+            />
+            {this.state.interestRateError && <p>{this.state.interestRateError}</p>}
+          </div>
+
+          <div className="form-group">
+            <input
+              type="number"
+              name="loanLength"
+              placeholder="length (e.g. 60)"
+              value={loanLength}
+              onChange={inputChange}
+            />
+            {this.state.loanLengthError && <p>{this.state.loanLengthError}</p>}
+          </div>
+
+          <div className="form-group">
+            <div className="form-group__radio">
+              <input
+                id='months'
+                type='radio'
+                name='term'
+                value='months'
+                onClick={inputChange}
+                defaultChecked
+              />
+              <label htmlFor='months'>Months</label>
+            </div>
+
+            <div className="form-group__radio">
+              <input
+                id='years'
+                type='radio'
+                name='term'
+                value='years'
+                onClick={inputChange}
+              />
+              <label htmlFor='years'>Years</label>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <button>Submit</button>
+          </div>
         </form>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ loanAmount, loanLength, interestRate, term }) => ({
+const mapStateToProps = ({ loanAmount, loanLength, interestRate, sampleLoanAmount, sampleLoanLength, sampleInterestRate }) => ({
   loanAmount,
   loanLength,
-  interestRate
+  interestRate,
+  sampleLoanAmount,
+  sampleLoanLength,
+  sampleInterestRate
 })
 
 export default connect(mapStateToProps, actions)(Form)

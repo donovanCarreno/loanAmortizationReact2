@@ -6,7 +6,7 @@ import Form from './Form'
 import Table from './Table'
 
 const App = () => (
-  <div>
+  <div className="app-container">
     <Form />
     <Table />
   </div>

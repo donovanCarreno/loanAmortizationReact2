@@ -5,7 +5,10 @@ const defaultState = {
   loanLength: '',
   interestRate: '',
   term: 'months',
-  amortizationSchedule: []
+  amortizationSchedule: [],
+  sampleLoanAmount: '20000',
+  sampleLoanLength: '60',
+  sampleInterestRate: '7.5'
 }
 
 export default (state = defaultState, action) => {
